@@ -71,3 +71,5 @@ defaults:
       type: "pages"
     values:
       layout: page # Set the default layout for pages
+
+favicon: /assets/img/blank-profile-photo.jpg
