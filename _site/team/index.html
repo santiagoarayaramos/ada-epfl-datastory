@@ -16,17 +16,17 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="This is my new website" />
 <meta property="og:description" content="This is my new website" />
-<link rel="canonical" href="http://localhost:4000/ada-epfl-datastory/about/" />
-<meta property="og:url" content="http://localhost:4000/ada-epfl-datastory/about/" />
+<link rel="canonical" href="http://localhost:4000/team/" />
+<meta property="og:url" content="http://localhost:4000/team/" />
 <meta property="og:site_name" content="Reddit buzz and community evolutions" />
 <script type="application/ld+json">
-{"name":"Reddit buzz and community evolutions","headline":"The team","url":"http://localhost:4000/ada-epfl-datastory/about/","description":"This is my new website","@type":"WebSite","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/ada-epfl-datastory"}},"@context":"https://schema.org"}</script>
+{"headline":"The team","url":"http://localhost:4000/team/","description":"This is my new website","@type":"WebPage","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
     
     
 
-    <link rel="manifest" href="/ada-epfl-datastory/manifest.json">
+    <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#242e2b"/>
 
     
@@ -75,10 +75,7 @@
 
     <header class="header">
   <div class="container">
-    <a class="logo" href="/ada-epfl-datastory/">
-  <img src="/ada-epfl-datastory" alt="Reddit buzz and community evolutions logo"/>
-</a>
-
+    
 
     
 <nav class="nav  nav--header">
@@ -88,21 +85,14 @@
       
 
       <li class="item  item--nav">
-        <a href="/ada-epfl-datastory/">Home</a>
-      </li>
-    
-
-      
-
-      <li class="item  item--nav  item--current">
-        <a href="/ada-epfl-datastory/about/">About</a>
+        <a href="/">Home</a>
       </li>
     
 
       
 
       <li class="item  item--nav">
-        <a href="/ada-epfl-datastory/blog/">Blog</a>
+        <a href="/about/">About</a>
       </li>
     
   </ul>
@@ -162,45 +152,46 @@
 
     <h1>The team</h1>
 
-    <div style="width:25%;float:left">
+    <hr />
+<!-- <div style="width:25%;float:left">
     <div style="width:90%;text-align:center;margin:0">
-        <img src="/uploads/sata_test_picture.jpg" />
-        <p style="margin:0">Santiago <b>Araya Ramos</b></p>
-        <p style="margin:0">Data Scraping, Data Story development</p>
+        <img src="/uploads/sata_test_picture.jpg"/>
+        <p style="margin:0;">Santiago <b>Araya Ramos</b></p>
+        <p style="margin:0;">Data Scraping, Data Story development</p>
     </div>
-</div>
+</div> -->
 
-<!-- <div>
+<div>
     <div style="width:25%;float:left">
         <div style="width:90%;text-align:center;margin:0">
-            <img src="/uploads/sata_test_picture.jpg"/>
-            <p style="margin:0">Santiago <b>Araya Ramos</b></p>
-            <p style="margin:0">Data Scraping, Data Story development</p>
+            <img src="/uploads/sata_test_picture.jpg" />
+            <p style="margin:0;">Santiago <b>Araya Ramos</b></p>
+            <p style="margin:0;">Data Scraping, Data Story development</p>
         </div>
     </div>
     <div style="width:25%;float:left">
         <div style="width:90%;text-align:center;margin:0">
-            <img src="/uploads/blank-profile-photo.jpg"/>
+            <img src="/uploads/blank-profile-photo.jpg" />
             <p style="margin:0">Achille <b>Pirotais</b></p>
             <p style="margin:0">Data Modeling and analysis</p>
         </div>
     </div>
     <div style="width:25%;float:left">
         <div style="width:90%;text-align:center;margin:0">
-            <img src="/uploads/blank-profile-photo.jpg"/>
+            <img src="/uploads/blank-profile-photo.jpg" />
             <p style="margin:0">Gauthier <b>Huguelet</b></p>
             <p style="margin:0">EDA and visualization</p>
         </div>
     </div>
     <div style="width:25%;float:left">
         <div style="width:90%;text-align:center;margin:0">
-            <img src="/uploads/blank-profile-photo.jpg"/>
+            <img src="/uploads/blank-profile-photo.jpg" />
             <p style="margin:0">Salim <b>Ameziane</b></p>
             <p style="margin:0">Data engineering and ingestion</p>
         </div>
     </div>
 </div>
- -->
+
 
 
   </article>
@@ -223,7 +214,7 @@
       
 
       <li class="item  item--nav">
-        <a href="/ada-epfl-datastory/#top">Back to top</a>
+        <a href="/#top">Back to top</a>
       </li>
     
   </ul>
@@ -243,7 +234,7 @@
     }
 
     navigator.serviceWorker
-      .register("/ada-epfl-datastory/sw.js")
+      .register("/sw.js")
       .then(registration => {
         console.log("Service Worker: registered");
       })

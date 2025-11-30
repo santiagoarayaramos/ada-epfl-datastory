@@ -2,14 +2,15 @@
 title: The team
 ---
 
-{% include profile.html image="/uploads/sata_test_picture.jpg" %}
+-----
+<!-- {% include profile.html image="/uploads/sata_test_picture.jpg" %} -->
 
-<!-- <div>
+<div>
     <div style="width:25%;float:left">
         <div style="width:90%;text-align:center;margin:0">
             <img src="/uploads/sata_test_picture.jpg"/>
-            <p style="margin:0">Santiago <b>Araya Ramos</b></p>
-            <p style="margin:0">Data Scraping, Data Story development</p>
+            <p style="margin:0;">Santiago <b>Araya Ramos</b></p>
+            <p style="margin:0;">Data Scraping, Data Story development</p>
         </div>
     </div>
     <div style="width:25%;float:left">
@@ -34,4 +35,4 @@ title: The team
         </div>
     </div>
 </div>
- -->
+

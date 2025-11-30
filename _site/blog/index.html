@@ -15,11 +15,11 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="This is my new website" />
 <meta property="og:description" content="This is my new website" />
-<link rel="canonical" href="http://localhost:4000/ada-epfl-datastory/blog/" />
-<meta property="og:url" content="http://localhost:4000/ada-epfl-datastory/blog/" />
+<link rel="canonical" href="http://localhost:4000/blog/" />
+<meta property="og:url" content="http://localhost:4000/blog/" />
 <meta property="og:site_name" content="Reddit buzz and community evolutions" />
 <script type="application/ld+json">
-{"headline":"Blog","url":"http://localhost:4000/ada-epfl-datastory/blog/","description":"This is my new website","@type":"WebPage","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/ada-epfl-datastory"}},"@context":"https://schema.org"}</script>
+{"headline":"Blog","url":"http://localhost:4000/blog/","description":"This is my new website","@type":"WebPage","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -31,7 +31,7 @@
     
     
 
-    <link rel="manifest" href="/ada-epfl-datastory/manifest.json">
+    <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#242e2b"/>
 
     
@@ -80,10 +80,7 @@
 
     <header class="header">
   <div class="container">
-    <a class="logo" href="/ada-epfl-datastory/">
-  <img src="/ada-epfl-datastory" alt="Reddit buzz and community evolutions logo"/>
-</a>
-
+    
 
     
 <nav class="nav  nav--header">
@@ -93,21 +90,14 @@
       
 
       <li class="item  item--nav">
-        <a href="/ada-epfl-datastory/">Home</a>
+        <a href="/">Home</a>
       </li>
     
 
       
 
       <li class="item  item--nav">
-        <a href="/ada-epfl-datastory/about/">About</a>
-      </li>
-    
-
-      
-
-      <li class="item  item--nav  item--current">
-        <a href="/ada-epfl-datastory/blog/">Blog</a>
+        <a href="/about/">About</a>
       </li>
     
   </ul>
@@ -175,11 +165,9 @@
     <article class="article  article--page  typeset">
 
       
+        <h1>Blog</h1>
         
-        <h1>Posts</h1>
-        <p>My thoughts and ideas</p>
-
-
+        
       
 
     </article>
@@ -191,14 +179,14 @@
         <li class="item  item--post">
           <article class="article  article--post">
 
-            <h2><a href="/ada-epfl-datastory/general/2018/08/22/hello-world/">Hello World</a></h2>
+            <h2><a href="/general/2018/08/22/hello-world/">Hello World</a></h2>
             
 
 <small class="small  post-meta">
   
   
     
-      <span class="label  label--category"><a href="/ada-epfl-datastory/categories/#general">General</a></span>
+      <span class="label  label--category"><a href="/categories/#general">General</a></span>
     
   &nbsp;&middot;&nbsp;<time datetime="2018-08-22T00:00:00+02:00" class="time">22 Aug 2018</time>
 </small>
@@ -210,20 +198,6 @@
         </li>
       
     </ul>
-    <nav class="nav  nav--paginator">
-
-  
-    <span class="pagination  pagination--previous">&larr; Newer</span>
-  
-
-  <span class="pagination  pagination--counter">Page: 1 of 1</span>
-
-  
-    <span class="pagination  pagination--next">Older &rarr;</span>
-  
-
-</nav>
-
   </section>
 
 
@@ -248,7 +222,7 @@
       
 
       <li class="item  item--nav">
-        <a href="/ada-epfl-datastory/#top">Back to top</a>
+        <a href="/#top">Back to top</a>
       </li>
     
   </ul>
@@ -268,7 +242,7 @@
     }
 
     navigator.serviceWorker
-      .register("/ada-epfl-datastory/sw.js")
+      .register("/sw.js")
       .then(registration => {
         console.log("Service Worker: registered");
       })

@@ -9,38 +9,38 @@
         "title": "Hello World",
         "excerpt": "This is my very first blog post. I haven’t written anything yet but I’m sure I have some great stories to tell.\n",
         "content": "This is my very first blog post. I haven’t written anything yet but I’m sure I have some great stories to tell.\n",
-        "url": "/ada-epfl-datastory/general/2018/08/22/hello-world/"
+        "url": "/general/2018/08/22/hello-world/"
       },
     
   
   
   
   {
-    "title": "The team",
-    "excerpt": "\n",
-    "content": "\n    \n        \n        Santiago Araya Ramos\n        Data Scraping, Data Story development\n    \n\n\n\n",
-    "url": "/ada-epfl-datastory/about/"
-  },
-  
-  {
     "title": "Categories",
     "excerpt": "Category index\n",
     "content": "\n",
-    "url": "/ada-epfl-datastory/categories/"
+    "url": "/categories/"
   },
   
   {
     "title": "Blog",
     "excerpt": "\n",
     "content": "\n",
-    "url": "/ada-epfl-datastory/blog/"
+    "url": "/blog/"
   },
   
   {
     "title": "The rise and fall of subbreddits",
     "excerpt": "\n",
     "content": "There isn’t much going on here yet, but watch this space\n",
-    "url": "/ada-epfl-datastory/"
+    "url": "/"
+  },
+  
+  {
+    "title": "The team",
+    "excerpt": "\n",
+    "content": "\n\n\n\n\n    \n        \n            \n            Santiago Araya Ramos\n            Data Scraping, Data Story development\n        \n    \n    \n        \n            \n            Achille Pirotais\n            Data Modeling and analysis\n        \n    \n    \n        \n            \n            Gauthier Huguelet\n            EDA and visualization\n        \n    \n    \n        \n            \n            Salim Ameziane\n            Data engineering and ingestion\n        \n    \n\n\n",
+    "url": "/team/"
   }
   
 ]
