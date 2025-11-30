@@ -1,4 +1,4 @@
-theme: jekyll-theme-minimal
+remote_theme: daviddarnes/alembic@main
 title: ADA Template Website
 description: A template website for ADA
 show_downloads: True
@@ -7,3 +7,6 @@ navigation:
     url: /
   - title: Example
     url: example
+
+plugins:
+  - jekyll-remote-theme
