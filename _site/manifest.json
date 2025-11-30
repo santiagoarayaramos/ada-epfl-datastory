@@ -1,0 +1,9 @@
+{
+  "lang": "en-US",
+  "name": "Reddit buzz and community evolutions",
+  "short_name": "Redditbuzzandcommunityevolutions",
+  "theme_color": "#24292e",
+  "background_color": "#ffffff",
+  "start_url": "/",
+  "display": "standalone"
+}
