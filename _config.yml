@@ -22,8 +22,8 @@ plugins:
 
 # Site settings
 css_inline: true
-url: 'https://santiagoarayaramos.github.io/'
-baseurl: '/ada-epfl-datastory'
+# url: 'https://santiagoarayaramos.github.io/'
+# baseurl: '/ada-epfl-datastory'
 title: 'Reddit buzz and community evolutions'
 description: 'New insights into Reddit communities and their dynamics.'
 permalink: pretty

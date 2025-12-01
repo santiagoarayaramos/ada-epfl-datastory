@@ -1,8 +1,8 @@
-const version = '20251130221136';
+const version = '20251201161430';
 const cacheName = `static::${version}`;
 
 const buildContentBlob = () => {
-  return ["/ada-epfl-datastory/general/2018/08/22/hello-world/","/ada-epfl-datastory/categories/","/ada-epfl-datastory/blog/","/ada-epfl-datastory/","/ada-epfl-datastory/team/","/ada-epfl-datastory/manifest.json","/ada-epfl-datastory/assets/search.json","/ada-epfl-datastory/assets/styles.css","/ada-epfl-datastory/redirects.json","/ada-epfl-datastory/sitemap.xml","/ada-epfl-datastory/robots.txt","/ada-epfl-datastory/feed.xml","", "/ada-epfl-datastory/assets/default-offline-image.png", "/ada-epfl-datastory/assets/scripts/fetch.js"
+  return ["/general/2018/08/22/hello-world/","/categories/","/blog/","/","/team/","/manifest.json","/assets/search.json","/assets/styles.css","/redirects.json","/sitemap.xml","/robots.txt","/feed.xml","", "/assets/default-offline-image.png", "/assets/scripts/fetch.js"
   ]
 }
 
@@ -60,7 +60,7 @@ self.addEventListener("fetch", event => {
 
   if (request.url.match(/\.(jpe?g|png|gif|svg)$/)) {
     // If url requested is an image and isn't cached, return default offline image
-    offlineAsset = "/ada-epfl-datastory/assets/default-offline-image.png";
+    offlineAsset = "/assets/default-offline-image.png";
   }
 
   // For all urls request image from network, then fallback to cache, then fallback to offline page

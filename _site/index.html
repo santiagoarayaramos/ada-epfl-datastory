@@ -16,17 +16,17 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="New insights into Reddit communities and their dynamics." />
 <meta property="og:description" content="New insights into Reddit communities and their dynamics." />
-<link rel="canonical" href="http://localhost:4000/ada-epfl-datastory/" />
-<meta property="og:url" content="http://localhost:4000/ada-epfl-datastory/" />
+<link rel="canonical" href="http://localhost:4000/" />
+<meta property="og:url" content="http://localhost:4000/" />
 <meta property="og:site_name" content="Reddit buzz and community evolutions" />
 <script type="application/ld+json">
-{"name":"Reddit buzz and community evolutions","headline":"The rise and fall of subbreddits","url":"http://localhost:4000/ada-epfl-datastory/","description":"New insights into Reddit communities and their dynamics.","@type":"WebSite","@context":"https://schema.org"}</script>
+{"name":"Reddit buzz and community evolutions","headline":"The rise and fall of subbreddits","url":"http://localhost:4000/","description":"New insights into Reddit communities and their dynamics.","@type":"WebSite","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
     
     
 
-    <link rel="manifest" href="/ada-epfl-datastory/manifest.json">
+    <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#242e2b"/>
 
     
@@ -85,14 +85,14 @@
       
 
       <li class="item  item--nav  item--current">
-        <a href="/ada-epfl-datastory/">Home</a>
+        <a href="/">Home</a>
       </li>
     
 
       
 
       <li class="item  item--nav">
-        <a href="/ada-epfl-datastory/team/">Team</a>
+        <a href="/team/">Team</a>
       </li>
     
   </ul>
@@ -159,13 +159,244 @@
 
     <h1>The rise and fall of subbreddits</h1>
 
-    <p>There isn’t much going on here yet, but watch this space</p>
+    <h1 id="project-title-buzz-bad-buzz-or-good-buzz">Project Title: Buzz, Bad Buzz or Good Buzz?</h1>
 
-<div style="width:90%;text-align:center;margin:0">
-    <img src="/assets/images/blank-profile-photo.jpg" />
-    <p style="margin:0">Achille <b>Pirotais</b></p>
-    <p style="margin:0">Data Modeling and analysis</p>
-</div>
+<h2 id="abstract-150-words">Abstract (≈150 words)</h2>
+<p>This project investigates the relationship between cross-subreddit interaction patterns and community growth on Reddit. We analyze whether frequent external interactions (both positive and negative) correlate with faster subreddit population growth, and whether negative interactions (conflicts) are more strongly associated with growth than positive ones. By examining subreddits with varying levels of external connectivity, we aim to understand if interaction intensity can predict community growth trajectories. This research is relevant for understanding online community dynamics, social media platform growth patterns, and the role of controversy in digital community formation. Our analysis will provide insights into whether “any publicity is good publicity” holds true for online communities, with implications for community management strategies and platform design.</p>
+
+<h2 id="research-questions">Research Questions</h2>
+<ul>
+  <li>RQ1: Does frequent external interaction (positive or negative) correlate with faster growth of a subreddit community?</li>
+  <li>RQ2: Are negative interactions (conflict) more strongly associated with subreddit growth than positive ones?</li>
+  <li>RQ3: Do subreddits with little external interaction grow differently compared to highly connected ones?</li>
+  <li>RQ4: Can we predict subreddit growth based on interaction patterns?</li>
+</ul>
+
+<h2 id="datasets">Datasets</h2>
+<ul>
+  <li>Primary dataset: Reddit Subreddit Hyperlink Network
+    <ul>
+      <li><strong>Files</strong>:
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">soc-redditHyperlinks-title.tsv</code> (352MB): Hyperlinks in post titles</li>
+          <li><code class="language-plaintext highlighter-rouge">soc-redditHyperlinks-body.tsv</code> (304MB): Hyperlinks in post bodies</li>
+        </ul>
+      </li>
+      <li><strong>Source</strong>: Research project on how subreddits attack one another (<a href="https://snap.stanford.edu/data/soc-RedditHyperlinks.html">project website</a>)</li>
+      <li><strong>Size</strong>: 858,490 hyperlinks across 55,863 unique subreddits</li>
+      <li><strong>Timespan</strong>: January 2014 - April 2017 (2.5 years)</li>
+      <li><strong>Format</strong>: Tab-separated (TSV) with columns:
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">SOURCE_SUBREDDIT</code>: Origin subreddit</li>
+          <li><code class="language-plaintext highlighter-rouge">TARGET_SUBREDDIT</code>: Destination subreddit</li>
+          <li><code class="language-plaintext highlighter-rouge">POST_ID</code>: Post identifier</li>
+          <li><code class="language-plaintext highlighter-rouge">TIMESTAMP</code>: Post timestamp</li>
+          <li><code class="language-plaintext highlighter-rouge">LINK_SENTIMENT</code>: -1 (negative) or +1 (positive/neutral)</li>
+          <li><code class="language-plaintext highlighter-rouge">PROPERTIES</code>: 86-dimensional text feature vector</li>
+        </ul>
+      </li>
+      <li><strong>Access</strong>: Files stored in <code class="language-plaintext highlighter-rouge">data/raw/</code> directory</li>
+      <li><strong>Key Features</strong>: Directed, signed (sentiment), temporal, attributed network</li>
+    </ul>
+  </li>
+  <li>Additional dataset(s) (if any):
+    <ul>
+      <li>Subreddit embeddings dataset (51,278 embeddings) - available separately
+        <ul>
+          <li>Rationale: Can be used for similarity analysis and community detection</li>
+          <li>Note: Some subreddits lack embeddings, so coverage is ~92% of nodes</li>
+        </ul>
+      </li>
+      <li>(WIP) Custom database scraped from Internet Archive snapshots of subreddit pages between January 2014 - April 2017 (2.5 years)</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="data-handling-plan">Data Handling Plan</h2>
+<ul>
+  <li>Ingestion:
+    <ul>
+      <li>TSV files loaded via <code class="language-plaintext highlighter-rouge">src/data/loader.py::load_reddit_hyperlink_network()</code></li>
+      <li>Both title and body hyperlinks combined (deduplicated by SOURCE-TARGET-POST_ID)</li>
+      <li>Timestamps converted to datetime format</li>
+    </ul>
+  </li>
+  <li>Preprocessing:
+    <ul>
+      <li>Aggregate edge-level data to subreddit-level metrics:
+        <ul>
+          <li>Incoming links (visibility/popularity metric)</li>
+          <li>Outgoing links (external engagement)</li>
+          <li>Positive/negative sentiment breakdowns</li>
+        </ul>
+      </li>
+      <li>Calculate growth proxies:
+        <ul>
+          <li>Since we lack consistent subscriber counts, use incoming link activity over time as proxy</li>
+          <li>Growth rate = ln(N_t/N_0) / t, where N is incoming links per time period</li>
+        </ul>
+      </li>
+      <li>Filter subreddits with sufficient data (≥100 interactions) for meaningful analysis</li>
+    </ul>
+  </li>
+  <li>Sampling/Filtering:
+    <ul>
+      <li>Focus on subreddits with ≥100 total interactions for statistical reliability</li>
+      <li>Temporal filtering: Analyze monthly aggregations for growth trends</li>
+    </ul>
+  </li>
+  <li>Scraping and Collection:
+    <ul>
+      <li>Identify subreddits with enough valid snapshots captured on Internet Archive’s Wayback Machine and retrieve the snapshot timestamps</li>
+      <li>Scrape archived subreddit sites for accurate reader counts for each valid snapshot to complement growth proxies</li>
+      <li>Gather growth data in a new personal database for further analysis</li>
+    </ul>
+  </li>
+  <li>Validation:
+    <ul>
+      <li>Check for temporal consistency (links span Jan 2014 - Apr 2017)</li>
+      <li>Validate sentiment labels (-1 or +1)</li>
+      <li>Detect outliers in growth rates and interaction counts</li>
+      <li>Verify subreddit name consistency across source/target columns</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="descriptive-statistics-and-eda">Descriptive Statistics and EDA</h2>
+<ul>
+  <li><strong>Network-level statistics</strong>:
+    <ul>
+      <li>Total hyperlinks, unique subreddits, temporal coverage</li>
+      <li>Sentiment distribution (positive vs negative links)</li>
+      <li>Interaction frequency distributions (incoming/outgoing)</li>
+    </ul>
+  </li>
+  <li><strong>Subreddit-level aggregations</strong>:
+    <ul>
+      <li>Total interactions per subreddit (incoming + outgoing)</li>
+      <li>Sentiment ratios (positive/negative breakdowns)</li>
+      <li>Growth rates based on incoming link activity over time</li>
+      <li>Growth rates based on archived reader counts</li>
+    </ul>
+  </li>
+  <li><strong>Correlation analysis</strong>:
+    <ul>
+      <li>Interaction intensity vs growth rate</li>
+      <li>Positive vs negative interactions vs growth</li>
+      <li>Incoming vs outgoing links vs growth</li>
+    </ul>
+  </li>
+  <li><strong>Temporal patterns</strong>:
+    <ul>
+      <li>Monthly aggregation of link counts and sentiment</li>
+      <li>Growth trends over the 2.5-year period</li>
+      <li>Seasonal patterns or trends in community interactions</li>
+    </ul>
+  </li>
+  <li><strong>Network characteristics</strong>:
+    <ul>
+      <li>Degree distributions (in-degree/out-degree)</li>
+      <li>Communities with high/low external connectivity</li>
+      <li>Potential biases: sampling issues, popular subreddits dominating</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="methods-and-essential-mathematical-details">Methods (and essential mathematical details)</h2>
+<ul>
+  <li><strong>Growth Rate Scraping</strong>
+    <ul>
+      <li>Use Wayback Machine’s CDX API to retrieve monthly CDX records for all studied subreddits, filtering out those that don’t have enough months recorded (threshold of $\frac{3}{5}$ of total months).</li>
+      <li>Handle common network errors when retrieving CDX records by retrying until $&lt;5%$ of requests have errors.</li>
+      <li>For all valid subreddits (with enough monthly snapshots), scrape the archived sites’ HTML with <code class="language-plaintext highlighter-rouge">requests</code> + <code class="language-plaintext highlighter-rouge">beautifulsoup4</code> libraries to retrieve reader counts.</li>
+      <li>Store all data in a new database for easy and fast access, as this scraping is very slow.</li>
+    </ul>
+  </li>
+  <li><strong>Growth Rate Proxy Calculation</strong> (proxy using incoming links):
+    <ul>
+      <li>Since subscriber counts are unavailable in the given database, use incoming link activity: $r = \frac{\ln(N_t/N_0)}{t}$</li>
+      <li>Where $N_t$ is incoming links per time period (monthly aggregation)</li>
+      <li>Rationale: Incoming links indicate visibility/popularity, which correlates with community growth</li>
+    </ul>
+  </li>
+  <li><strong>Interaction Intensity Metrics</strong>:
+    <ul>
+      <li>Total interactions: $\sum_{i} I_i$ where $I_i$ is interaction count per subreddit</li>
+      <li>Sentiment-weighted interactions: $\sum_{i} w_i \cdot I_i$ where $w_i \in {-1, 1}$ for negative/positive</li>
+      <li>Incoming vs outgoing: Separate metrics for visibility (incoming) vs engagement (outgoing)</li>
+    </ul>
+  </li>
+  <li><strong>Regression Analysis</strong>:
+    <ul>
+      <li>Linear regression: $growth_rate = \beta_0 + \beta_1 \cdot total_interactions + \beta_2 \cdot sentiment_ratio + \epsilon$</li>
+      <li>Compare positive vs negative interactions: separate coefficients for $I_{pos}$ and $I_{neg}$</li>
+    </ul>
+  </li>
+  <li><strong>Comparative Analysis</strong>:
+    <ul>
+      <li>ANOVA/t-test to compare growth rates across interaction intensity groups (low/medium/high)</li>
+      <li>Hypothesis: $H_0: \mu_{low} = \mu_{medium} = \mu_{high}$ vs $H_1$: at least one differs</li>
+      <li>Effect size: Cohen’s d for practical significance</li>
+    </ul>
+  </li>
+  <li><strong>Time Series Analysis</strong>:
+    <ul>
+      <li>ARIMA models for growth prediction based on lagged interaction patterns</li>
+      <li>Granger causality tests to investigate direction of relationships</li>
+    </ul>
+  </li>
+  <li><strong>Network Analysis</strong>:
+    <ul>
+      <li>Graph metrics: in-degree (incoming links), out-degree (outgoing links), centrality measures</li>
+      <li>Community detection: identify clusters of highly connected subreddits</li>
+      <li>Temporal network analysis: how network structure evolves over time</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="proposed-timeline">Proposed Timeline</h2>
+<ul>
+  <li>Week 1–2: Finalize scraped custom databases, data access and cleaning pipeline; Implement properties as full column for easier manipulation, complete EDA</li>
+  <li>Week 3–4: Baseline modeling/analysis; iterate on features</li>
+  <li>Week 5: Evaluation, robustness checks; draft narrative and visuals</li>
+  <li>Week 6: Refinement and write-up; prepare final notebook and artifacts</li>
+</ul>
+
+<h2 id="team-organization-towards-p3">Team Organization (towards P3)</h2>
+<ul>
+  <li>Data engineering and ingestion: <strong>Salim Ameziane</strong></li>
+  <li>EDA and visualization: <strong>Gauthier Huguelet</strong></li>
+  <li>Modeling/analysis: <strong>Achille Pirotais</strong></li>
+  <li>Data Scraping and narrative: <strong>Santiago Araya Ramos</strong></li>
+</ul>
+
+<h2 id="questions-for-tas-optional">Questions for TAs (optional)</h2>
+
+<h2 id="repository-structure">Repository Structure</h2>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.
+├─ notebooks/
+│  └─ p2_initial_analysis.ipynb      # single main notebook
+├─ src/
+│  ├─ analysis/
+│  │  └─ eda.py                      # EDA utilities
+│  ├─ data/
+│  │  └─ loader.py                   # data loading &amp; preprocessing
+│  └─ utils/
+│     └─ paths.py                    # path helpers
+├─ data/
+│  ├─ raw/                           # raw input data (not tracked)
+│  └─ processed/                     # processed artifacts (not tracked)
+├─ requirements.txt
+└─ README.md
+</code></pre></div></div>
+
+<h2 id="reproducibility--setup">Reproducibility &amp; Setup</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python <span class="nt">-m</span> venv .venv
+.<span class="se">\.</span>venv<span class="se">\S</span>cripts<span class="se">\a</span>ctivate  <span class="c"># on Windows PowerShell</span>
+pip <span class="nb">install</span> <span class="nt">-r</span> requirements.txt
+</code></pre></div></div>
+
+<p>Open <code class="language-plaintext highlighter-rouge">notebooks/p2_initial_analysis.ipynb</code> and run cells in order. The notebook expects data under <code class="language-plaintext highlighter-rouge">data/raw/</code> (see instructions within the notebook or implement download in <code class="language-plaintext highlighter-rouge">src/data/loader.py</code>).</p>
 
 
   </article>
@@ -188,7 +419,7 @@
       
 
       <li class="item  item--nav">
-        <a href="/ada-epfl-datastory/#top">Back to top</a>
+        <a href="/#top">Back to top</a>
       </li>
     
   </ul>
@@ -208,7 +439,7 @@
     }
 
     navigator.serviceWorker
-      .register("/ada-epfl-datastory/sw.js")
+      .register("/sw.js")
       .then(registration => {
         console.log("Service Worker: registered");
       })
